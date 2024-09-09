@@ -1,0 +1,392 @@
+# -*- org-mode: -*-
+#+title: Art.org
+#+author: @reverberationFromAbyss(深渊回响)
+#+email: no email was provided
+#+date: Sep.7th, 2024
+
+#+options: toc:2
+
+#+seq_todo: todo(t@) feature(F@) issue(i!/@) wip(w@) fixme(f!/@) knwon(k!/@) | done(d!) canceled(c!/@) abort(a!/@)
+
+* I. Abstract.
+
+ 本文将讲解 Git 的基本用法以及如何用它来做合作项目。
+ 首先，会详细描述如何安装 Git,
+ 其次，会描述如何如何使用 Git,
+ 主要包括两个部分:
+ 1. 常用 Git 命令的使用
+ 2. Git 的一些概念
+ 最后，会提供一些使 Git 的使用更加方便的工具软件.
+
+This article will guide you to know base usage of git, and how to use it to work together with others.
+First of all, it will describe how to install Git, on all Microsoft Windows, Linux and Apple MacOS platforms.
+Second, it will guide you to use Git, step by step, interactively.
+This part contains two main parts:
+1. How those commonly used commands should be used
+2. Some Basic Concepts of Git
+Last, a group of software that may help you in using Git are provided for you.
+
+* II. Introduction.
+
+Git, 一款命令行下运行的软件,
+没有光鲜亮丽的 GUI, 也没有实时提示的命令交互,
+有的只有各个子命令的操作.
+但是, 这个在大多数人眼里简陋难用的软件却为大部分软件从业者
+和工业涉及领域人员所长期使用.
+Git 究竟有哪些魔力, 或者说, 有哪些方便的功能,
+可以为我们学生所用呢?
+
+Git, a software runs on Console,
+without beautiful GUI, and no interactive read-evaluate-print-loop shell,
+it has only subcommands.
+However, contrast with popular idea, the software,
+which is seen as crude and hard-to-use by the most,
+is widely used in programmer and engineer groups.
+Thus, what magic git contains, or what functions it provided,
+can be used by our students?
+
+* III. Background.
+
+想象一个场景, 对于一个开发了很久的项目,
+直到最后一次更改之前, 都一切安好...
+这时虽反应过来是最新的更改引入的 Bug,
+却没法撤回到上一个版本.
+这一直都是各个开发人员需要解决的问题.
+为此, 也有人开发了各种软件来试图减轻这种影响.
+而这些软件, 便被统称为 VCS (Version Control System, 版本控制系统).
+Git 就是其中之一.
+
+Imagine a scene, as for a long developed project,
+it was all OK until the last change...
+Although the problem is absolutely introduced by recently commit,
+there is no way to turn back.
+Then a lot of programmers try to settle the problem,
+which disturbing developers long time,
+by create assist software.
+Those software are called VCS (Version control System).
+Git, which we are talking about, is one of them.
+
+如果采用 Git 来管理一个项目的话,
+就可以通过找到上一版本来减轻对项目的大规模修改造成的恶劣后果.
+比如如上例所示,
+就可以通过 "git restore <version-hash>" 来退回修改前的状态.
+
+If adapt Git as project manager,
+it is possible to restore project to version before change.
+Which can decrease negative impact on it.
+For example, just as the case talked above,
+just type command "git restore <version-hash>" and the change is discarded.
+
+* IV. Installation.
+
+Git 是一个跨平台的软件, 但是,
+由于其开发于 Linux,
+且最初便是为了 Linux 的开发而写就的,
+在 Linux 等*nix 系统上的安装和使用体验都要优于 Windows 平台.
+下面将会对 Git 在三个桌面端常用平台,
+Linux, Windows 和 MacOS, 上的安装做简单描述.
+
+Git is a portable software.
+However, since it was developed on Linux initially,
+and was special designed for manage source code of Linux originally,
+the user experience on *nix, such as GNU/Linux,
+is greatly richer than that on Windows.
+Here will talk about how to install git on Linux, Windows and MacOS.
+
+** Alpha. Linux(Debian series/ Ubuntu series and other apt family distro)
+
+对于 GNU/Linux, 出于其开放的特性,
+它的发行版有许多, 其中最为国人所了解的,
+便是以 Debian/Ubuntu 为代表(基于 Debian/Ubuntu) 的 APT 家族的发行版.
+事实上, 对于一个 Linux 新手, 直接认为使用的是该族发行版即可.
+
+As for GNU/Linux Operation System, because of opening source,
+it has many distributions, which share same kernel.
+Among those, what is most famous in China is APT family, which,
+represented by Debian and Ubuntu.
+Actually, it can be regard as one of them if a distribution is used by fresh hands of Linux.
+
+对于该系的发行版, 有一个通用的软件管理器 (包管理器), apt.
+所以, Git 在这些发行版上的一般安装流程为:
+
+1. 以普通用户登录进入桌面
+2. 在应用程序列表 (开始菜单) 中找到, 并启动 "终端" ("Terminal")
+3. 在终端中输入命令: "sudo apt install git"
+4. 盲打输入用户密码, 并在确定后输入 Y 和回车
+
+With regard to distributions using apt as its package manager,
+you should do following to install and setup Git on your system:
+
+1. Login to desktop as regular user
+2. Find and launch "Terminal" in Software List (or start manual)
+3. Type command "sudo apt install git"
+4. Enter user password blandly, then press Y and <Enter> Key
+
+** Beta. Linux(Arch series/ Gentoo series/ Slackware series/ NixOS/ ...)
+
+本节中, 假定对于 Linux 已经有足够了解, 直接给出命令:
+
+We assuming you have known Linux for a long time and are experienced in using command prompts.
+Just type the commands below.
+
+对于 Arch, 可以运行:
+
+Run below to install Git on Arch Linux:
+#+begin_src sh
+  # arch linux and its derivative versions
+  sudo pacman -Syu
+  sudo pacman -S git
+#+end_src
+
+对于 Gentoo, 则可以通过如下安装方式:
+
+Use emerge to install git on Gentoo:
+#+begin_src sh
+  # Gentoo and its derivative versions
+  sudo emerge git
+#+end_src
+
+对于 NixOS, 有:
+
+As for NixOS, type below:
+#+begin_src sh
+  # NixOS and other nix environments
+  nix-env -iA git
+#+end_src
+或者修改系统 configuration.nix (位于/etc/nix).
+
+Or you may edit configuration.nix on `/etc/nix/' folder.
+
+** Gamma. Windows
+
+作为一个至今仍占据世界操作系统用户份额大头的系统,
+很多原专门为 Linux 而开发的软件最终也被移植到了 Windows 上,
+Git 也是如此:
+
+Windows was so popular and captured such a large market share that many of tools originally developed on Linux has been port to Windows.
+Git is no exception.
+
+官方网址在[[https://gitforwindows.org/][Git for Windows]]
+
+Official website is at [[https://gitforwindows.org/][Git for Windows]]
+
+而由于一些众所周知的原因,
+国内并不能很流畅的下载这些软件,
+这是就必须要依赖各大镜像站.
+
+如
+[[https://mirrors.tuna.tsinghua.edu.cn/github-release/git-for-windows/git/][清华开源软件镜像库]]
+可以直接选择下载 x64 的 exe 安装包.
+
+There is no problem for students who came from countries other than China to download the setup utilities for git on Windows.
+However, if you do have the request to download through mirror site, you may visit [[https://mirrors.tuna.tsinghua.edu.cn/github-release/git-for-windows/git/][tsinghua university open source software mirror]]
+and choose x64 version setup, in the format of `exe'.
+
+下载完成后会有图形界面的安装指引, 如图:
+
+There will be a install guide after double clicked the executable file. Here are screenshots:
+
+#+ATTR_latex: :width 800
+#+ATTR_HTML: :width 800
+#+ATTR_ORG: :width 450
+[[./img/1.png]]
+\\
+[License, 是 GPL, 可以直接 Next]
+
+[License, GNU Public License, Just press Next]
+
+#+ATTR_latex: :width 800
+#+ATTR_HTML: :width 800
+#+ATTR_ORG: :width 450
+[[./img/2.png]]
+\\
+[选择安装位置]
+
+[Choose where to install the Git]
+
+#+ATTR_latex: :width 800
+#+ATTR_HTML: :width 800
+#+ATTR_ORG: :width 450
+[[./img/3.png]]
+\\
+[选择组件, 保持默认即可, 或者可以全选]
+
+[Choose components, keep default or select all]
+
+#+ATTR_latex: :width 800
+#+ATTR_HTML: :width 800
+#+ATTR_ORG: :width 450
+[[./img/4.png]]
+\\
+[是否创建开始菜单快捷方式, 推荐保持默认]
+
+[Choose whather to create Start manual shortcut, keep default is recommended]
+
+#+ATTR_latex: :width 800
+#+ATTR_HTML: :width 800
+#+ATTR_ORG: :width 450
+[[./img/5.png]]
+\\
+[选择默认 git log 编辑器, 如果不明白这是用来干什么的, 就参考下图]
+
+[Choose default editor for editing git log, if you are confused about what it is used to, just follow the figure below]
+
+#+ATTR_latex: :width 800
+#+ATTR_HTML: :width 800
+#+ATTR_ORG: :width 450
+[[./img/6.png]]
+\\
+[选择 Notepad 作为 log 编辑器, Notepad 是系统自带的编辑器]
+
+[Choose Notepad as default editor, the Notepad is built-in on Windows]
+
+#+ATTR_latex: :width 800
+#+ATTR_HTML: :width 800
+#+ATTR_ORG: :width 450
+[[./img/7.png]]
+\\
+[新仓库默认分支名, 不明白什么作用就保持默认]
+
+[Default name of a new repository, keep default if you are confused about its function]
+
+#+ATTR_latex: :width 800
+#+ATTR_HTML: :width 800
+#+ATTR_ORG: :width 450
+[[./img/8.png]]
+\\
+[选择是否添加 git 到系统 path 环境变量, 不明白干什么的话, 推荐选择第三个, 而非默认的第二个]
+
+[Choose whather to add directory who contains git's binary file into system environment variable, path.
+Recommend to choose third rather than second, which is chose by default.]
+
+#+ATTR_latex: :width 800
+#+ATTR_HTML: :width 800
+#+ATTR_ORG: :width 450
+[[./img/9.png]]
+\\
+[选择 openssh 实现, 不明白干什么的保持默认即可]
+
+[Choose implement of openssh, keep default is all OK.]
+
+#+ATTR_latex: :width 800
+#+ATTR_HTML: :width 800
+#+ATTR_ORG: :width 450
+[[./img/10.png]]
+\\
+[不论如何, 保持默认]
+
+[Keep default]
+
+#+ATTR_latex: :width 800
+#+ATTR_HTML: :width 800
+#+ATTR_ORG: :width 450
+[[./img/11.png]]
+\\
+[文档检出模式(autocrlf 选项), 选择第二个]
+
+[autocrlf switch's status, choose second]
+
+#+ATTR_latex: :width 800
+#+ATTR_HTML: :width 800
+#+ATTR_ORG: :width 450
+[[./img/12.png]]
+\\
+[选择第二个]
+
+[Choose second]
+
+#+ATTR_latex: :width 800
+#+ATTR_HTML: :width 800
+#+ATTR_ORG: :width 450
+[[./img/13.png]]
+\\
+[保持默认即可]
+
+[Keep default]
+
+#+ATTR_latex: :width 800
+#+ATTR_HTML: :width 800
+#+ATTR_ORG: :width 450
+[[./img/14.png]]
+\\
+[保持默认即可]
+
+[Keep default]
+
+#+ATTR_latex: :width 800
+#+ATTR_HTML: :width 800
+#+ATTR_ORG: :width 450
+[[./img/15.png]]
+\\
+[不用管, 保持默认即可]
+
+[Keep default]
+
+#+ATTR_latex: :width 800
+#+ATTR_HTML: :width 800
+#+ATTR_ORG: :width 450
+[[./img/16.png]]
+\\
+[实验性功能, 保持默认即可]
+
+[Experimental support, keep default]
+
+#+ATTR_latex: :width 800
+#+ATTR_HTML: :width 800
+#+ATTR_ORG: :width 450
+[[./img/17.png]]
+\\
+[完成安装]
+
+[Wait until setup is finished]
+
+#+ATTR_latex: :width 800
+#+ATTR_HTML: :width 800
+#+ATTR_ORG: :width 450
+[[./img/18.png]]
+\\
+[Git For Windows 命令行界面]
+
+[Command prompt of Git For Windows]
+
+
+在完成上述操作后, Git For Windows 便安装完成了
+
+Just follow the figure above, and the setup process is finished.
+
+** Delta. MacOS
+
+出于某些原因 (经济条件不允许), 笔者并无可以运行 MacOS 的设备, 因此仅参考 Git 及其他相关程序对于其在 MacOS 上的安装来进行描述.
+
+Due to poor financial support, there is no device that can run MacOS.
+And it is impossible to take screenshot to describe setup process.
+Thus, this part will refer to official document and other sources.
+
+首先, Git 被作为 Mac 开发工具包的一部分,
+和 Xcode 一起被提供给使用 MacOS 的开发者,
+所以, 直接打开终端, 并输入 git,
+若系统中已经安装好 Git,
+就会输出 git 的帮助信息,
+而若没有, 则会弹出 "安装命令行开发工具" 的提示框,
+遵循其指引安装即可.
+
+First, as Mac has adapt Git as part of its development kit,
+and provided together with Xcode.
+Thus, just type "git" on `Terminal',
+and system will pop up a window to instruct you install Git.
+
+Git, 作为 Linux 下的工具, 也可以与其他被移植到 MacOS 上的程序一样,
+通过第三方软件管理器安装, 其中, 最知名的一个是 HomeBrew,
+在安装好 HomeBrew 后, 可以通过在终端中输入 "brew install git" 来安装 Git[[Git - Install on MacOS]] .
+
+Git haven been ported to MacOS as well,
+thus, it is possible to be installed through package manager.
+Among all package manager designed for MacOS,
+HomeBrew is most famous one.
+After setup HomeBrew, and then you can install git by typing "brew install git" on `Terminal'.
+
+
+------------------------------
+* Reference:  :ref:
+
+1. <<Git - Install on MacOS>> ^Git - Install on MacOS : [[https://git-scm.com/download/mac]]

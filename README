@@ -18,12 +18,12 @@
 (Thank you for reading this)
 # split
 
-* Goals [0/10]
-+ [ ] Abstract
+* Goals [4/9]
++ [X] Abstract
 # + [ ] Preface
-+ [ ] Introduction
-+ [ ] Background
-+ [ ] Install
++ [X] Introduction
++ [X] Background
++ [X] Install
 + [ ] Sample
   - Init
   - Add
@@ -51,7 +51,6 @@
   - HEAD
   - Detached HEAD
   - Fast-Forward
-+ [ ] Servers
 + [ ] Assisted software
 + [ ] Summary
 # split
