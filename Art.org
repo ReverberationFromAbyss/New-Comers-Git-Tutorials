@@ -178,8 +178,10 @@ Official website is at [[https://gitforwindows.org/][Git for Windows]]
 [[https://mirrors.tuna.tsinghua.edu.cn/github-release/git-for-windows/git/][清华开源软件镜像库]]
 可以直接选择下载 x64 的 exe 安装包.
 
-There is no problem for students who came from countries other than China to download the setup utilities for git on Windows.
-However, if you do have the request to download through mirror site, you may visit [[https://mirrors.tuna.tsinghua.edu.cn/github-release/git-for-windows/git/][tsinghua university open source software mirror]]
+There is no problem for students who came from countries other
+than China to download the setup utilities for git on Windows.
+However, if you do have the request to download through mirror site,
+you may visit [[https://mirrors.tuna.tsinghua.edu.cn/github-release/git-for-windows/git/][tsinghua university open source software mirror]]
 and choose x64 version setup, in the format of `exe'.
 
 下载完成后会有图形界面的安装指引, 如图:
@@ -386,7 +388,189 @@ HomeBrew is most famous one.
 After setup HomeBrew, and then you can install git by typing "brew install git" on `Terminal'.
 
 
+* V. Tutorial (Sample Guide)
+
+Git 是一个带有多个子命令的命令行程序, 也就是说, 学习 Git 实际上是要学习 Git 的各个子命令.
+
+Git is a command line program that can be called with subcommands, that is,
+learn the usage of Git is actually learning how to use its subcommands.
+
+** Alpha. init.
+
+我们将要学习的命令是`init'.
+这是一个用于创建新仓库的命令, 从这里开始, 我们将正式开始 Git 的学习之路.
+
+The first command we'd like to learn is `init'.
+It is used to create a empty git repository,
+which will begin our trip together with Git.
+
+在了解了 init 子命令的用处以后, 来亲自体会一下它的用法:
+打开一个终端, 并且导航到你的工程所在的文件夹.
+(在文件资源管理器中, 导航到你的文件夹, 按下 Shift 和鼠标右键,
+选择 "在命令提示符中打开", 然后就可以看到命令行了.
+在 Linux 中, 打开文件管理器, 右键, 选择 "在此处打开终端",
+MacOS 和 Linux 的操作类似)
+
+After knowing the function of `init', let's try it in person.
+Open the terminal, navigate to directory contains your project.
+(press <Shift> and click right button in explorer on windows,
+and choose "open command prompt", then you can find the console
+or just right click in file managers in Linux desktop, and open terminal,
+on MacOS, just similar to Linux, right click and choose open in terminal.)
+(On other way, you can also open a terminal and change directory into your project
+as file is organized in the form of nested directories,
+type "cd "(notice! there is a space character) and target directory you want to work,
+then, a single press of <Enter> is all OK.
+
+[[./img/powershell.png]]
+\\
+[新版本中可能是 `在此处打开 Powershell' 而非 `在此处打开命令提示符']
+
+[It may be `open in PowerShell' in newer version]
+
+#+begin_src bat
+  :: on Cmd.exe
+  :: assuming there are directory called `foo' in your home directory.
+  cd C:\Users\<User-Name>\foo
+#+end_src
+
+#+begin_src bash
+  # on Linux/ MacOS
+  # assuming there are directory called `foo' in your home directory.
+  cd ~/foo
+  # or
+  cd /home/<User-Name>/foo
+#+end_src
+
+在打开终端以后, 就可以运行第一个 git 命令了:
+
+After open the terminal, then you can try your first git command.
+
+#+begin_src bash
+  git init
+#+end_src
+
+看见一条回显了? "已初始化空的 Git 仓库...". 恭喜你, 看见了这条, 就代表着命令运行成功了.
+
+Have you seen a response? "Initialized empty git repository at...".
+Congratulations... Once you see the output, it represents the command evaluates successful.
+
+** Beta. status.
+
+有了一个仓库, 也就可以使用仓库的高级功能了.
+第一个, 也是最常用的一个仓库管理命令是`status'.
+它用于显示当前仓库的状态.
+
+As we created a repository, it is possible to use advanced function git provided for us now.
+First one, and the most commonly used command is `status'.
+It is a command to display status of a repository.
+
+试一下:
+
+Have a try:
+
+#+begin_src bat
+  :: create a file
+  :: ^Z means type Z while press <Ctrl> button
+  copy con file
+  ^Z
+  :: on windows terminal, you may type `dir' to check the result,
+  dir
+  :: then check status
+  git status
+#+end_src
+
+#+begin_src bash
+  # create a file
+  touch file
+  # now, there should be a file can be seen directly,
+  # on Linux/ MacOS, type `ls' in console, and than you can see it.
+  ls
+  # output:
+  # file
+  # After that, we can check its status
+  git status
+#+end_src
+
+** Gamma. add.
+
+新建仓库实际上并不能起到保存不同版本的功能. 实际上, 为达成这样的效果, 依赖于手动将不同版本存入仓库.
+于是, 便需要了解到 `add' 命令了.
+
+It cannot store different versions automatically after initialized a brand new repository.
+It needs you to store your changes manually.
+Thus, it's time to learn `add' command.
+
+add 命令用于记录当前文件的状态.
+将它们暂存, 使得这些文件可以继续被 git 操作,
+或者仅仅为了在更改后还能够还原到暂存时的状态.
+
+Add command is used to record current files' status.
+Staging them for further perform or just provide a way to restore them later.
+
+我们在上一节中已经创建了一个文件:
+
+As we created a file on last section:
+
+#+begin_src bash
+  # add file to stage them
+  git add .
+  # this command adds all files lay on current work directory into stage
+#+end_src
+
+你可以再用`status'命令去查看仓库的状态:
+
+And you may check its status again than:
+
+#+begin_src bash
+  git status
+#+end_src
+
+** Delta. commit.
+
+前文中, `add' 指令将文件更改暂存, 现在则要了解如何提交暂存, 区分不同更改的 "版本".
+此处我们要了解的是 commit 命令.
+
+Add command stages files above, and here we'll learn how to commit the stage and split each stage into "versions".
+That's, `commit' command.
+
+commit 命令的做用是将暂存区中存储的文件持久化保存, 并且为其添加注释和标记, 以方便后续访问.
+Commit command is used to store staged files, and comment and tag them, make further visit more easier.
+
+Commit 命令可以直接使用, 也可以与一些开关参数和用:
+
+1. 无参数: 打开一个文本编辑器, 用以编辑该次提交版本的日志, 保存并关闭文本后, 将暂存区文件持久化保存, 并为其添加一个通过 hash 产生的标记.
+2. --amend: 修改上一次提交, 并在修改并保存日志后, 进行与无参情况下相似的操作
+3. --amend --only: 仅修改日志
+
+So, let's have a try:
+
+#+begin_src bash
+  # type something into the file...
+  cat >> ./file
+  hello, world
+  ^D
+  # ^D means type D while pressing <Ctrl>
+  # and... stage them..., again...
+  git add .
+  # see its status?
+  git status
+  # finally, commit...
+  git commit -i "hello world"
+  # oooooops... it should not be written like that ... hello world...
+  # fix it...
+  cat > ./file
+  Hello, World!
+  ^D
+  # add them and then check the status>
+  git add .
+  git status
+  git commit --amend
+#+end_src
+
 ------------------------------
 * Reference:  :ref:
 
 1. <<Git - Install on MacOS>> ^Git - Install on MacOS : [[https://git-scm.com/download/mac]]
+
+#  LocalWords:  init MacOS Xcode
